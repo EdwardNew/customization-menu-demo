@@ -6,7 +6,7 @@ import { CustomizationDrawer } from "@/components/CustomizationDrawer";
 export default function Home() {
     const [rectangleProps, setRectangleProps] = useState({
         primaryColor: "hsl(354, 100%, 90%)",
-        secondaryColor: "hsl(287, 81%, 22%)",
+        accentColor: "hsl(287, 81%, 22%)",
         fontFamily: "Inter",
         borderRadius: 8,
         borderStyle: "solid",

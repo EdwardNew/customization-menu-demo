@@ -20,7 +20,7 @@ import { ColorTab } from "@/components/tabs/color-tab";
 type CustomizationDrawerProps = {
     rectangleProps: {
         primaryColor: string;
-        secondaryColor: string;
+        accentColor: string;
         fontFamily: string;
         borderRadius: number;
         borderStyle: string;
@@ -40,7 +40,7 @@ export function CustomizationDrawer({
                 <Button variant="outline">Open Drawer</Button>
             </DrawerTrigger>
             <DrawerContent>
-                <div className="mx-auto w-full max-w-sm h-[40dvh] overflow-y-scroll">
+                <div className="mx-auto w-full max-w-sm h-[60dvh] overflow-y-scroll">
                     <DrawerTitle className="invisible">Move Goal</DrawerTitle>
                     <Tabs defaultValue="color" className="w-full">
                         <TabsList className="grid grid-cols-3 w-full">
@@ -54,6 +54,7 @@ export function CustomizationDrawer({
                         <TabsContent value="color" className="p-4">
                             <ColorTab
                                 primaryColor={rectangleProps.primaryColor}
+                                accentColor={rectangleProps.accentColor}
                                 onChange={(colors) => {
                                     setRectangleProps({
                                         ...rectangleProps,

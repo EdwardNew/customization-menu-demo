@@ -13,14 +13,15 @@ interface MyColorSliderProps extends ColorSliderProps {
 
 export function MyColorSlider({ label, ...props }: MyColorSliderProps) {
     return (
-        <ColorSlider {...props}>
+        <ColorSlider
+            {...props}
+            className="grid grid-cols-[1fr_auto] flex-col items-center gap-2 w-56"
+        >
             <Label>{label}</Label>
-            <SliderOutput />
-            <SliderTrack className="h-8 w-full">
-                <ColorThumb />
+            <SliderOutput className="text-sm text-gray-500 dark:text-zinc-400 font-medium" />
+            <SliderTrack className="flex-none col-span-2 rounded-lg w-full h-2">
+                <ColorThumb className="w-8 h-8 top-[50%] left-[50%] rounded-full border-2 border-white " />
             </SliderTrack>
         </ColorSlider>
     );
 }
-
-<MyColorSlider label="Red Opacity" defaultValue="#f00" channel="alpha" />;
