@@ -8,10 +8,9 @@ export default function Home() {
         primaryColor: "hsl(354, 100%, 90%)",
         accentColor: "hsl(287, 81%, 22%)",
         fontFamily: "Inter",
-        borderRadius: 8,
+        borderRadius: 64,
         borderStyle: "solid",
-        borderWidth: 2,
-        borderColor: "#000000",
+        borderWidth: 3,
     });
 
     return (

@@ -8,12 +8,10 @@ type BorderTabProps = {
     borderRadius: number;
     borderStyle: string;
     borderWidth: number;
-    borderColor: string;
     onChange: (border: {
         borderRadius?: number;
         borderStyle?: string;
         borderWidth?: number;
-        borderColor?: string;
     }) => void;
 };
 
@@ -21,7 +19,6 @@ export function BorderTab({
     borderRadius,
     borderStyle,
     borderWidth,
-    borderColor,
     onChange,
 }: BorderTabProps) {
     const borderStyles = [
@@ -41,7 +38,7 @@ export function BorderTab({
                 <Slider
                     id="border-radius"
                     min={0}
-                    max={32}
+                    max={128}
                     step={1}
                     value={[borderRadius]}
                     onValueChange={(value) =>
@@ -97,30 +94,6 @@ export function BorderTab({
                         </div>
                     ))}
                 </RadioGroup>
-            </div>
-
-            <Separator />
-
-            <div className="space-y-2">
-                <Label htmlFor="border-color">Border Color</Label>
-                <div className="flex items-center gap-4">
-                    <div
-                        className="w-10 h-10 rounded-md border shadow-sm"
-                        style={{ backgroundColor: borderColor }}
-                    />
-                    <input
-                        id="border-color"
-                        type="color"
-                        value={borderColor}
-                        onChange={(e) =>
-                            onChange({ borderColor: e.target.value })
-                        }
-                        className="w-full h-10"
-                    />
-                </div>
-                <div className="text-sm text-muted-foreground mt-1">
-                    {borderColor}
-                </div>
             </div>
         </div>
     );

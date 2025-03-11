@@ -25,7 +25,6 @@ type CustomizationDrawerProps = {
         borderRadius: number;
         borderStyle: string;
         borderWidth: number;
-        borderColor: string;
     };
     setRectangleProps: (props: any) => void;
 };
@@ -81,7 +80,6 @@ export function CustomizationDrawer({
                                 borderRadius={rectangleProps.borderRadius}
                                 borderStyle={rectangleProps.borderStyle}
                                 borderWidth={rectangleProps.borderWidth}
-                                borderColor={rectangleProps.borderColor}
                                 onChange={(border) => {
                                     setRectangleProps({
                                         ...rectangleProps,

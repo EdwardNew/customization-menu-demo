@@ -1,7 +1,7 @@
 "use client";
 import { MyColorSlider } from "../MyColorSlider";
 import { parseColor } from "react-stately";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type ColorTabProps = {
     primaryColor: string;
