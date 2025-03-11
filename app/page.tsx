@@ -1,13 +1,12 @@
 "use client";
-
 import { useState } from "react";
-import { CustomizationDrawer } from "@/components/CustomizationDrawer";
 import { Rectangle } from "@/components/rectangle";
+import { CustomizationDrawer } from "@/components/CustomizationDrawer";
 
 export default function Home() {
     const [rectangleProps, setRectangleProps] = useState({
-        primaryColor: "#3b82f6",
-        secondaryColor: "#60a5fa",
+        primaryColor: "hsl(354, 100%, 90%)",
+        secondaryColor: "hsl(287, 81%, 22%)",
         fontFamily: "Inter",
         borderRadius: 8,
         borderStyle: "solid",
@@ -16,7 +15,7 @@ export default function Home() {
     });
 
     return (
-        <main className="flex min-h-screen flex-col p-4 bg-gray-50">
+        <main className="flex min-h-screen flex-col items-center p-4 bg-gray-50">
             <Rectangle {...rectangleProps} />
 
             <CustomizationDrawer

@@ -1,65 +1,53 @@
 "use client";
-
 import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
+import { MyColorSlider } from "../MyColorSlider";
 
-interface ColorTabProps {
+type ColorTabProps = {
     primaryColor: string;
-    secondaryColor: string;
-    onChange: (colors: {
-        primaryColor: string;
-        secondaryColor: string;
-    }) => void;
-}
+    onChange: (primaryColor: { primaryColor: string }) => void;
+};
 
-export function ColorTab({
-    primaryColor,
-    secondaryColor,
-    onChange,
-}: ColorTabProps) {
+export function ColorTab({ primaryColor, onChange }: ColorTabProps) {
     return (
         <div className="flex justify-evenly">
             <div className="space-y-2 flex flex-col items-center">
                 <Label htmlFor="primary-color">Primary Color</Label>
-                <div className="flex items-center gap-4">
-                    <input
-                        id="primary-color"
-                        type="color"
-                        value={primaryColor}
-                        onChange={(e) =>
-                            onChange({
-                                primaryColor: e.target.value,
-                                secondaryColor,
-                            })
-                        }
-                        className="w-12 h-12 rounded-md border shadow-sm"
-                    />
-                </div>
-                <div className="text-sm text-muted-foreground mt-1">
+                <div className="flex items-center gap-4"></div>
+                <div
+                    className="text-sm text-muted-foreground mt-1"
+                    style={{ backgroundColor: primaryColor }}
+                >
                     {primaryColor}
                 </div>
             </div>
 
-            <div className="space-y-2 flex flex-col items-center">
-                <Label htmlFor="secondary-color">Secondary Color</Label>
-                <div className="flex items-center gap-4">
-                    <input
-                        id="secondary-color"
-                        type="color"
-                        value={secondaryColor}
-                        onChange={(e) =>
-                            onChange({
-                                primaryColor,
-                                secondaryColor: e.target.value,
-                            })
-                        }
-                        className="w-12 h-12 rounded-md border shadow-sm"
-                    />
-                </div>
-                <div className="text-sm text-muted-foreground mt-1">
-                    {secondaryColor}
-                </div>
-            </div>
+            <MyColorSlider
+                className="w-full h-8"
+                channel="hue"
+                label="hue"
+                value={primaryColor}
+                onChange={(value) =>
+                    onChange({ primaryColor: value.toString("hsl") })
+                }
+            />
+            <MyColorSlider
+                className="w-full h-8"
+                channel="saturation"
+                label="saturation"
+                value={primaryColor}
+                onChange={(value) =>
+                    onChange({ primaryColor: value.toString("hsl") })
+                }
+            />
+            <MyColorSlider
+                className="w-full h-8"
+                channel="lightness"
+                label="lightness"
+                value={primaryColor}
+                onChange={(value) =>
+                    onChange({ primaryColor: value.toString("hsl") })
+                }
+            />
         </div>
     );
 }
