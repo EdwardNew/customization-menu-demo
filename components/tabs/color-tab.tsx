@@ -1,7 +1,8 @@
 "use client";
 import { MyColorSlider } from "../MyColorSlider";
 import { parseColor } from "react-stately";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Check } from "lucide-react";
 
 type ColorTabProps = {
     primaryColor: string;
@@ -18,6 +19,37 @@ export function ColorTab({
 }: ColorTabProps) {
     const [selectedColor, setSelectedColor] =
         useState<selectedColor>("primary");
+
+    const [contrastIsGood, setContrastIsGood] = useState<boolean>();
+
+    async function CheckContrast(primaryColor: string, accentColor: string) {
+        const primaryHex = parseColor(primaryColor).toString("hex");
+        const accentHex = parseColor(accentColor).toString("hex");
+
+        try {
+            const response = await fetch(
+                `https://webaim.org/resources/contrastchecker/?fcolor=${primaryHex.slice(
+                    1
+                )}&bcolor=${accentHex.slice(1)}&api`
+            );
+            if (!response.ok) {
+                throw new Error("Failed to fetch contrast data");
+            }
+
+            const data = await response.json();
+
+            console.log(data);
+            return data.AA === "pass";
+        } catch (err) {
+            console.warn(err);
+        }
+    }
+
+    useEffect(() => {
+        CheckContrast(primaryColor, accentColor).then((result) =>
+            setContrastIsGood(result)
+        );
+    }, [primaryColor, accentColor]);
 
     return (
         <div className="flex justify-evenly">
@@ -66,7 +98,7 @@ export function ColorTab({
                     </span>
                 </span>
                 {selectedColor === "primary" ? (
-                    <>
+                    <div className="w-full">
                         <MyColorSlider
                             className="w-full"
                             channel="hue"
@@ -100,9 +132,9 @@ export function ColorTab({
                                 })
                             }
                         />{" "}
-                    </>
+                    </div>
                 ) : (
-                    <>
+                    <div className="w-full">
                         <MyColorSlider
                             className="w-full"
                             channel="hue"
@@ -136,8 +168,23 @@ export function ColorTab({
                                 })
                             }
                         />
-                    </>
+                    </div>
                 )}
+                <span className="w-full flex gap-8 items-center">
+                    <p className="text-xl">Contrast</p>
+                    <span
+                        className="flex items-center uppercase text-sm rounded-full px-1.5 py-0.5"
+                        style={{
+                            backgroundColor: contrastIsGood
+                                ? "#BEFCB6"
+                                : "#FFB6B6",
+                            color: contrastIsGood ? "#078D00" : "#CF1414",
+                        }}
+                    >
+                        <Check className="w-5 h-5 stroke-[2px]" />
+                        ui
+                    </span>
+                </span>
             </div>
         </div>
     );

@@ -15,7 +15,7 @@ export function MyColorSlider({ label, ...props }: MyColorSliderProps) {
     return (
         <ColorSlider
             {...props}
-            className="grid grid-cols-[1fr_auto] flex-col items-center gap-2 w-56"
+            className="grid grid-cols-[1fr_auto] flex-col items-center gap-2"
         >
             <Label>{label}</Label>
             <SliderOutput className="text-sm text-gray-500 dark:text-zinc-400 font-medium" />
